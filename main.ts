@@ -1,13 +1,13 @@
-function firstRoll (firstSum: number) {
-    if (firstSum == 5) {
+function firstRoll () {
+    if (diceSum == 5) {
         game.over(true)
-    } else if (firstSum == 9) {
+    } else if (diceSum == 9) {
         game.over(true)
-    } else if (firstSum == 0) {
+    } else if (diceSum == 0) {
         game.over(false)
-    } else if (firstSum == 1) {
+    } else if (diceSum == 1) {
         game.over(false)
-    } else if (firstSum == 10) {
+    } else if (diceSum == 10) {
         game.over(false)
     }
 }
@@ -16,17 +16,19 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     dice_2 = randint(0, diceFaces.length - 1)
     value_1 = sprites.create(diceFaces[dice_1], SpriteKind.Player)
     value_2 = sprites.create(diceFaces[dice_2], SpriteKind.Player)
+    diceSum = dice_1 + dice_2
     value_1.setPosition(53, 60)
     value_2.setPosition(106, 60)
     pause(2000)
     value_1.destroy()
     value_2.destroy()
-    firstRoll(0)
+    firstRoll()
 })
 let value_2: Sprite = null
 let value_1: Sprite = null
 let dice_2 = 0
 let dice_1 = 0
+let diceSum = 0
 let diceFaces: Image[] = []
 diceFaces = [
 img`
@@ -145,4 +147,3 @@ img`
     `
 ]
 scene.setBackgroundColor(10)
-let diceSum = dice_1 + dice_2
