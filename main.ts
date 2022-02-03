@@ -1,13 +1,13 @@
-function firstRoll () {
-    if (diceSum == 5) {
+function firstRoll (firstSum: number) {
+    if (firstSum == 5) {
         game.over(true)
-    } else if (diceSum == 9) {
+    } else if (firstSum == 9) {
         game.over(true)
-    } else if (diceSum == 0) {
+    } else if (firstSum == 0) {
         game.over(false)
-    } else if (diceSum == 1) {
+    } else if (firstSum == 1) {
         game.over(false)
-    } else if (diceSum == 10) {
+    } else if (firstSum == 10) {
         game.over(false)
     }
 }
@@ -22,13 +22,13 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     pause(2000)
     value_1.destroy()
     value_2.destroy()
-    firstRoll()
+    firstRoll(diceSum)
 })
+let diceSum = 0
 let value_2: Sprite = null
 let value_1: Sprite = null
 let dice_2 = 0
 let dice_1 = 0
-let diceSum = 0
 let diceFaces: Image[] = []
 diceFaces = [
 img`
