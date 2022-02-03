@@ -1,3 +1,16 @@
+function firstRoll (firstSum: number) {
+    if (firstSum == 5) {
+        game.over(true)
+    } else if (firstSum == 9) {
+        game.over(true)
+    } else if (firstSum == 0) {
+        game.over(false)
+    } else if (firstSum == 1) {
+        game.over(false)
+    } else if (firstSum == 10) {
+        game.over(false)
+    }
+}
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     dice_1 = randint(0, diceFaces.length - 1)
     dice_2 = randint(0, diceFaces.length - 1)
@@ -8,6 +21,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     pause(2000)
     value_1.destroy()
     value_2.destroy()
+    firstRoll(0)
 })
 let value_2: Sprite = null
 let value_1: Sprite = null
@@ -131,3 +145,4 @@ img`
     `
 ]
 scene.setBackgroundColor(10)
+let diceSum = dice_1 + dice_2
