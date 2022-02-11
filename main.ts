@@ -1,4 +1,5 @@
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+    animation_2()
     dice_3 = randint(0, diceFaces.length - 1)
     dice_4 = randint(0, diceFaces.length - 1)
     value_3 = sprites.create(diceFaces[dice_3], SpriteKind.Player)
@@ -29,6 +30,19 @@ function firstRoll (firstSum: number) {
         game.splash("You lost $1. Play again?")
     }
 }
+function animation_2 () {
+    for (let index = 0; index < 10; index++) {
+        animation3 = randint(0, diceFaces.length - 1)
+        animation4 = randint(0, diceFaces.length - 1)
+        roll3 = sprites.create(diceFaces[animation3], SpriteKind.Player)
+        roll4 = sprites.create(diceFaces[animation4], SpriteKind.Player)
+        roll3.setPosition(53, 60)
+        roll4.setPosition(106, 60)
+        pause(100)
+        roll3.destroy()
+        roll4.destroy()
+    }
+}
 function secondroll (secondSum: number) {
     if (secondSum == diceSum) {
         info.changeScoreBy(1)
@@ -39,6 +53,7 @@ function secondroll (secondSum: number) {
     }
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    animation_1()
     dice_1 = randint(0, diceFaces.length - 1)
     dice_2 = randint(0, diceFaces.length - 1)
     value_1 = sprites.create(diceFaces[dice_1], SpriteKind.Player)
@@ -51,11 +66,32 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     value_2.destroy()
     firstRoll(diceSum)
 })
+function animation_1 () {
+    for (let index = 0; index < 10; index++) {
+        animation1 = randint(0, diceFaces.length - 1)
+        animation2 = randint(0, diceFaces.length - 1)
+        roll1 = sprites.create(diceFaces[animation1], SpriteKind.Player)
+        roll2 = sprites.create(diceFaces[animation2], SpriteKind.Player)
+        roll1.setPosition(53, 60)
+        roll2.setPosition(106, 60)
+        pause(100)
+        roll1.destroy()
+        roll2.destroy()
+    }
+}
+let roll2: Sprite = null
+let roll1: Sprite = null
+let animation2 = 0
+let animation1 = 0
 let value_2: Sprite = null
 let value_1: Sprite = null
 let dice_2 = 0
 let dice_1 = 0
 let diceSum = 0
+let roll4: Sprite = null
+let roll3: Sprite = null
+let animation4 = 0
+let animation3 = 0
 let diceSum2 = 0
 let value_4: Sprite = null
 let value_3: Sprite = null
