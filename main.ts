@@ -1,3 +1,4 @@
+// This is the code for the player's second roll. It first calls the animation function, then selects two random values from the array list, then displays the two dice that were randomly selected. It then adds the two die values and uses the second roll function. It also sets the position of the dice and later destroys the dice so a player can move on to their next roll. 
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     animation_2()
     dice_3 = randint(0, diceFaces.length - 1)
@@ -11,7 +12,11 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     value_3.destroy()
     value_4.destroy()
     secondroll(diceSum2)
+    if (info.score() == 0) {
+        game.over(false)
+    }
 })
+// This function defines the values that determine whether a player wins, loses, or goes onto their second roll based on the sum of the dice on their first roll.
 function firstRoll (firstSum: number) {
     if (firstSum == 5) {
         info.changeScoreBy(1)
@@ -30,6 +35,7 @@ function firstRoll (firstSum: number) {
         game.splash("You lost $1. Play again?")
     }
 }
+// This function animates the second roll before the player's actual roll is revealed.
 function animation_2 () {
     for (let index = 0; index < 10; index++) {
         animation3 = randint(0, diceFaces.length - 1)
@@ -43,6 +49,7 @@ function animation_2 () {
         roll4.destroy()
     }
 }
+// This function defines the values that determine whether a player wins, loses, or rolls again based on the sum of the dice on their second roll.
 function secondroll (secondSum: number) {
     if (secondSum == diceSum) {
         info.changeScoreBy(1)
@@ -52,6 +59,7 @@ function secondroll (secondSum: number) {
         game.splash("You lost $1. Play again?")
     }
 }
+// This is the code for the player's first roll. It first calls the animation function, then selects two random values from the array list, then displays the two dice that were randomly selected. It then adds the two die values and uses the first roll function. It also sets the position of the dice and later destroys the dice so a player can move on to their next roll. 
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     animation_1()
     dice_1 = randint(0, diceFaces.length - 1)
@@ -65,7 +73,11 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     value_1.destroy()
     value_2.destroy()
     firstRoll(diceSum)
+    if (info.score() == 0) {
+        game.over(false)
+    }
 })
+// This function animates the first roll before the player's actual roll is revealed.
 function animation_1 () {
     for (let index = 0; index < 10; index++) {
         animation1 = randint(0, diceFaces.length - 1)
@@ -79,6 +91,7 @@ function animation_1 () {
         roll2.destroy()
     }
 }
+// The on start of our code includes an array of images for the dices faces that we created, the instructions for how to play the games and how to win/lose, and sets the score so the player can keep track of how much "money" they have.
 let roll2: Sprite = null
 let roll1: Sprite = null
 let animation2 = 0
@@ -219,6 +232,3 @@ game.showLongText("Welcome to street dice! The rules are as follows: You start w
 game.showLongText("If you do not roll any of these numbers on your first roll, press B to roll again. Continue pressing B until you either repeat the number you got on your first roll, or you roll a 7. If you repeat your roll, you win a dollar. If you roll a 7 you lose a dollar.", DialogLayout.Full)
 game.showLongText("The goal is to win as much money as possible, or simply not lose it all. Have Fun!", DialogLayout.Full)
 info.setScore(5)
-if (info.score() == 0) {
-    game.over(false)
-}
